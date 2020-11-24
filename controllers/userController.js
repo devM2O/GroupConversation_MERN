@@ -9,7 +9,7 @@ exports.register = async (req, res) => {
   
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   
-    if (!emailRegex.test(email)) throw "Invalid Email";
+    if (!emailRegex.test(email)) throw "Invalid Email or This Email Domain is not Support";
     if (password.length < 6) throw "password must be atleast 6 charactors";
 
     const userExists = await User.findOne({email});
