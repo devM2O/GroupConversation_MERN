@@ -2,17 +2,14 @@ import React from "react";
 import {useHistory} from 'react-router-dom'
 import makeToast from "../Toaster";
 import axios from "axios";
+import DontGo from "./DontGo";
 
 export default function LoginPage(props) {
   const emailRef = React.createRef();
   const passwordRef = React.createRef();
   const history = useHistory()
 
-  React.useEffect(() => { //This is for not going Login & Register for logined  user
-    const token = localStorage.getItem("CC_Token");
-    if (!token) history.push("/login")
-    else history.push("/dashboard")
-  }, [0]);
+  DontGo()  //This is for not going Login & Register for being logined user
 
   const loginUser = (props) => {
     const email = emailRef.current.value;
@@ -23,7 +20,7 @@ export default function LoginPage(props) {
       .then((response) => {
         // console.log(response);
         makeToast("success", response.data.message);
-        localStorage.setItem("CC_Token", response.data.token);
+        localStorage.setItem("Token", response.data.token);
         history.push("/dashboard");
       })
       .catch((err) => {

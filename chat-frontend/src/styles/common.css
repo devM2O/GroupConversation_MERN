@@ -4,6 +4,7 @@
   font-family: Montserrat;
   box-sizing: border-box;
   color: #333;
+  font-weight: bold;
 }
 
 body {
@@ -18,7 +19,7 @@ body {
   position: fixed;
   left: 50%;
   top: 50%;
-  width: 25vw;
+  width: 50%;
   transform: translate(-50%, -50%);
 }
 
@@ -55,6 +56,7 @@ input {
   border-radius: 2px;
   border-bottom: 1px solid #eee;
   transition: all 0.5s;
+  margin-top: 10px;
 }
 
 input:focus {
@@ -66,7 +68,9 @@ button {
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 2px;
-  width: 100%;
+  width: 50%;
+  display: block;
+  margin: auto;
   text-transform: uppercase;
 }
 
@@ -81,8 +85,18 @@ button {
   margin-bottom: 1rem;
 }
 
+
 .join {
   background: #f7c52a;
   padding: 0.25rem 1rem;
   border-radius: 2px;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+input:focus, textarea:focus, select:focus{
+  outline: none;
 }

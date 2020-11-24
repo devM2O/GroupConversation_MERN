@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import {useHistory} from 'react-router-dom'
+import DontGo from './DontGo'
 import makeToast from "../Toaster";
 
 export default function RegisterPage() {
@@ -9,11 +10,7 @@ export default function RegisterPage() {
   const passwordRef = React.createRef();
   const history = useHistory()
 
-  React.useEffect(() => { //This is for not going Login & Register for logined  user
-    const token = localStorage.getItem("CC_Token");
-    if (!token) history.push("/login")
-    else history.push("/dashboard")
-  }, [0]);
+  DontGo()  //This is for not going Login & Register for being logined  user
 
   const registerUser = (props) => {
     const name = nameRef.current.value;
