@@ -34,7 +34,7 @@ exports.login = async (req, res) => {
         if (isMatch) {
         const token = await jwt.sign({ id: user.id }, process.env.JWT_SECRET);
     
-        res.json({message: `welcome ${user.id}`, token});
+        res.json({message: `welcome ${user.name}`, token});
         }else res.status(422).json({ error: "incorrect password" });
     })
 
