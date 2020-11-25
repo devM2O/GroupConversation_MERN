@@ -11,6 +11,10 @@ const messageSchema = new mongoose.Schema({
     required: "Chatroom is required!",
     ref: "User",
   },
+  name: {
+    type: String,
+    required: "name is required!",
+  },
   message: {
     type: String,
     required: "Message is required!",

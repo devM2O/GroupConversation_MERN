@@ -45,9 +45,10 @@ io.on("connection", (socket) => {
     console.log("Disconnected: " + socket.userId);
   });
 
-  socket.on("joinRoom", ({ chatroomId }) => {
+  socket.on("joinRoom", async ({ chatroomId}) => {
     socket.join(chatroomId);
-    console.log("A user joined chatroom: " + chatroomId);
+    console.log("A user join the chatroom:" +chatroomId);
+    
   });
 
   socket.on("leaveRoom", ({ chatroomId }) => {
@@ -61,6 +62,7 @@ io.on("connection", (socket) => {
       const newMessage = new Message({
         chatroom: chatroomId,
         user: socket.userId,
+        name: user.name,
         message,
       });
       io.to(chatroomId).emit("newMessage", {

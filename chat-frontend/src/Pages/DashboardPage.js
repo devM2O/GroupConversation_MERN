@@ -37,7 +37,7 @@ export default function DashboardPage(props) {
           />
         </div>
       </div>
-      <button>Create Chatroom</button>
+      <button className="button">Create Chatroom</button>
 
       <div className="chatrooms">
         {chatrooms.map((chatroom) => (

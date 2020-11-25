@@ -60,7 +60,7 @@ const LoginPage = (props) => {
             ref={passwordRef}
           />
         </div>
-        <button onClick={loginUser}>Login</button>
+        <button className="button" onClick={loginUser}>Login</button>
       </div>
     </div>
   );

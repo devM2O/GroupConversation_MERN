@@ -32,7 +32,7 @@ exports.login = async (req, res) => {
     bcrypt.compare(password, user.password,async (err, isMatch) => {
         if (err) throw err
         if (isMatch) {
-        const token = await jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+        const token = await jwt.sign({ id: user.id, name: user.name }, process.env.JWT_SECRET);
     
         res.json({message: `welcome ${user.name}`, token});
         }else res.status(422).json({ error: "incorrect password" });

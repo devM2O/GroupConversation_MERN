@@ -69,7 +69,7 @@ export default function RegisterPage() {
           ref={passwordRef}
         />
       </div>
-      <button onClick={registerUser}>Register</button>
+      <button onClick={registerUser} className="button">Register</button>
     </div>
   );
 }

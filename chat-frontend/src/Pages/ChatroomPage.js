@@ -6,6 +6,8 @@ const ChatroomPage = ({ match, socket }) => {
   const [messages, setMessages] = React.useState([]);
   const messageRef = React.useRef();
   const [userId, setUserId] = React.useState("");
+  // const [active, setActive] = React.useState("")
+  // const [status, setStatus] = React.useState("")
 
   const sendMessage = () => {
     if (socket) {
@@ -18,14 +20,15 @@ const ChatroomPage = ({ match, socket }) => {
     }
   };
 
-  React.useEffect(() => {
-    const token = localStorage.getItem("Token");
-    if (token) {
+
+  React.useEffect(() => {  
+      const token = localStorage.getItem("Token");
       const payload = JSON.parse(atob(token.split(".")[1]));
       setUserId(payload.id);
-    }
+
     if (socket) {
       socket.on("newMessage", (message) => {
+        console.log(message);
         const newMessages = [...messages, message];
         setMessages(newMessages);
       });
@@ -33,11 +36,21 @@ const ChatroomPage = ({ match, socket }) => {
     //eslint-disable-next-line
   }, [messages]);
 
+    // React.useEffect(()=>{
+    //   if(active == "on"){
+    //     setStatus(name + "join the chatroom")
+    //   }else{
+    //     setStatus(name + "left the chatroom")
+    //   }
+    // }, [active])
+
   React.useEffect(() => {
+    
     if (socket) {
       socket.emit("joinRoom", {
-        chatroomId,
+        chatroomId
       });
+      // setActive("on")
     }
 
     return () => {
@@ -45,7 +58,9 @@ const ChatroomPage = ({ match, socket }) => {
       if (socket) {
         socket.emit("leaveRoom", {
           chatroomId,
+          userId
         });
+        // setActive("off")
       }
     };
     //eslint-disable-next-line
@@ -69,6 +84,11 @@ const ChatroomPage = ({ match, socket }) => {
               {message.message}
             </div>
           ))}
+          
+            {/* {(active === "on"?
+            <div>{status}</div>:<div>{status}</div>
+            )} */}
+          
         </div>
         <div className="chatroomActions">
           <div>
