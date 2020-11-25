@@ -1,10 +1,10 @@
 import React from "react";
-import {useHistory} from 'react-router-dom'
+import {useHistory, withRouter} from 'react-router-dom'
 import makeToast from "../Toaster";
 import axios from "axios";
 import DontGo from "./DontGo";
 
-export default function LoginPage(props) {
+const LoginPage = (props) => {
   const emailRef = React.createRef();
   const passwordRef = React.createRef();
   const history = useHistory()
@@ -22,6 +22,7 @@ export default function LoginPage(props) {
         makeToast("success", response.data.message);
         localStorage.setItem("Token", response.data.token);
         history.push("/dashboard");
+        props.setupSocket();
       })
       .catch((err) => {
         // console.log(err);
@@ -64,3 +65,5 @@ export default function LoginPage(props) {
     </div>
   );
 }
+
+export default withRouter(LoginPage);
